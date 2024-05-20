@@ -1,0 +1,8 @@
+Flask
+Flask-SocketIO
+pandas
+openpyxl
+requests
+beautifulsoup4
+numpy
+scikit-learn

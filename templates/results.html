@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Organized Book Titles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Organized Book Titles</h1>
+        {% for cluster_id, books in grouped_books.items() %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2>Cluster {{ cluster_id }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for book in books %}
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <img src="{{ book.Image_URL }}" class="card-img-top" alt="Book Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ book.Title }}</h5>
+                                        <p class="card-text">{{ book.Description }}</p>
+                                        <p class="card-text"><small class="text-muted">Genres: {{ book.Genres | join(', ') }}</small></p>
+                                        <p class="card-text"><small class="text-muted">Rating: {{ book.Rating }}</small></p>
+                                        <p class="card-text"><small class="text-muted">Total Raters: {{ book.Total_Raters }}</small></p>
+                                        <a href="{{ book.Book_URL }}" target="_blank" class="btn btn-primary">View on Goodreads</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Upload another file</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
